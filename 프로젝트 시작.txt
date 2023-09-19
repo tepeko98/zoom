@@ -1,0 +1,4 @@
+cmd
+-mkdiri zoom
+-cd zoom
+-npm init -y
