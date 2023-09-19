@@ -1,0 +1,48 @@
+cmd
+-mkdiri zoom
+-cd zoom
+-npm init -y
+-name, version, descriptiom, license 작성
+
+-----github repository 생성 후-----
+
+touch README.md
+# Noom(프로젝트명)
+
+"package.json description".
+
+-vscode terminal에서 npm i nodemon -D 실행
+
+-프로젝트 폴더에 babel.config.json, nodemon.json, src폴더 생성
+	-> src 폴더 안에 server.js 생성
+
+- terminal에서 git init . 후 npm i @babel/core @babel/cli @babel/node -D,
+			  npm i @babel/preset-env -D 입력
+	-> touch .gitignore
+
+-.gitignore에 /node_modules 작성 후 refresh 해보면 커밋할 것들이 정리된다.
+* node_modules는 github에 업로드하지 않는 폴더이다.
+
+-nodemon.json에 {"exec": "babel-node src/server.js"} 작성
+		* "exec"이라는 key는 ser/server.js에 대해 babel-node 명령문을 실행시키는 것이다.
+
+-babel.config.json에 {"presets": ["@babel/preset-env"]} 작성
+
+-----이제 package.json에 필요한 것들은 자동으로 입력되어 있다-----
+
+-package.json에 "scripts": {"dev": "nodemon"}, 추가
+		-> nodemon이 호출되면 nodemon이 node.json을 살펴보고 거기 있는 코드를 실행한다.
+
+-터미널에서 npm i express, npm i pug 실행
+
+-src/server.js의 맨 윗줄에 import express from "express"; 작성
+
+-const app = express(); 작성
+
+-const handleListen = () => console.log(`Listening on http://localhost:3000`);,
+app.listen(3000, handleListen); 작성
+		->터미널에서 npm run dev 실행시켜서 살펴보기
+		->localhost:3000으로 가보면 아무것도 안 떠도 페이지를 찾을 수 없습니다는 안 나와야 함
+
+
+

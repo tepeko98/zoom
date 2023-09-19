@@ -1,0 +1,60 @@
+-static files, 또는 유저들에게 가게 될 파일들을 만들기
+		->Webpack 같은 거 말고 js만 유저에게 보내고, 브라우저가 이해할 수 있도록 만들기
+
+-src/public/js/app.js 생성 ->추후에 css폴더 등을 public 안에 생성할 수 있다.
+
+-src/views/home.pug 생성 -> 여기에 HTML 작업을 한다. title은 프로젝트명으로 바꾸고, body 안에 h1 it works! 작성
+
+-server.js에 app.set("view engine", "pug");
+	     app.set("views", __dirname + "/views"); 작성
+	     -> 터미널에서 npm run dev 작동하는지 확인
+*ReferenceError: __dirname is not defined in ES module scope
+에러 발생시,
+server.js 최상단에 추가
+
+import path from 'path';
+const __dirname = path.resolve();
+
+
+-app.get("/", (req, res) => res.render("home")); 작성
+	->Express로 views를 설정하고 render, 나머지는 websocket에서 실시간으로 발생
+	->이제 home.pug에 script를 추가하면 된다.
+
+-home.pug의 body 안에 script(src="/public/js/app.js") 작성
+	->지금은 작동하지 않으므로 static 작업을 해줘야 한다.
+
+-server.js에서 app.use("/public", express.static(__dirname + "/public")); 작성
+	-> 유저가 /public으로 이동 시 __dirname + "/public" 폴더를 보여주도록 설정
+	-> http://localhost:3000/public/js/app.js 가보면 정상 작동 중이다.
+	->src/public/js/app.js에 텍스트 작성 시 화면에 띄워준다.
+	->app.js를 저장할 때마다 nodemon이 새로 시작된다. 서버나 js파일을 수정할 때만 nodemon이 재시작되도록 설정해야함
+	->nodemon.json에 "ignore": ["src/public/*"], 추가하면 된다.
+
+-home.pug body 안에 button Call 작성
+	-> 버튼을 디자인하기 위해 MVP CSS 활용
+
+-home.pug head 안에 ling:css 엔터 -> mvp css 링크 복붙
+
+-body header h1 순서로 바꿔서 가운데 정렬해주고, 그 밑에 main h2 Welcome to Noom 추가
+
+-app.js에 alert("hi")입력해서 테스트해보기
+
+-----지금까지 한 것들 정리-----
+1. app.set("view engine", "pug"); -> pug로 view engine 설정
+2. app.set("views", __dirname + "/views"); -> Express에 template이 어디 있는지 지정
+3. app.use("/public", express.static(__dirname + "/public")); -> public url을 생성해서 유저에게 파일 공유
+4. app.get("/", (req, res) => res.render("home")); -> home.pug를 render해주는 route handler 생성(home.pug body 이하)
+5. 
+
+
+
+
+
+
+
+
+
+
+
+
+
