@@ -1,0 +1,15 @@
+-npm i ws -> WebSocket(양방향) 서버 만들지 않고 http 프로토콜인  express와 합칠 것이다.
+	-> express로 같은 서버에 ws기능을 설치하기 위해 express 수정이 필요하다.
+
+-app.listen 지운 뒤 (맨위)import http from "http";, (맨밑)http.createServer(app); 를 server 변수로 선언
+	-> http서버 생성
+
+-추가로 import WebSocket from "ws"; 작성 후 const wss = new WebSocket.Server({server}); *http 서버가 필요 없다면 ()비우면 됨
+	-> ws서버 생성 및 동시에 작동 가능
+
+
+
+
+
+
+

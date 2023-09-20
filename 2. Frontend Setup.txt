@@ -39,16 +39,17 @@ const __dirname = path.resolve();
 
 -app.js에 alert("hi")입력해서 테스트해보기
 
------지금까지 한 것들 정리-----
+-----주요 코드-----
 1. app.set("view engine", "pug"); -> pug로 view engine 설정
 2. app.set("views", __dirname + "/views"); -> Express에 template이 어디 있는지 지정
 3. app.use("/public", express.static(__dirname + "/public")); -> public url을 생성해서 유저에게 파일 공유
 4. app.get("/", (req, res) => res.render("home")); -> home.pug를 render해주는 route handler 생성(home.pug body 이하)
-5. mvp css 활용과 기본적인 텍스트 작성
+-> 만약 catchhall url(홈페이지만 사용) 만들고 싶으면 밑에 app.get("/*", (req, res) => res.redirect("/")); 작성
 
-
-
-
+-----총정리-----
+1. Nodemon 설정을 위해 nodemon.json 생성 -> 프로젝트에 변경 사항이 있을 시 서버를 재시작해주는 프로그램
+2. 재시작 대신 babel-node를 실행하도록 했는데, babel은 미리 작성해둔 코드를 NodeJS 코드로 컴파일(src/server.js) 해준다.
+3. server.js(Backend)에서는 express를 import하고, express 앱 구성, 주요 코드 1~4 작성 * 3번 public 파일들은 (Frontend)에서 구동
 
 
 
