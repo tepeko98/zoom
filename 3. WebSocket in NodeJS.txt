@@ -7,6 +7,8 @@
 -추가로 import WebSocket from "ws"; 작성 후 const wss = new WebSocket.Server({server}); *http 서버가 필요 없다면 ()비우면 됨
 	-> ws서버 생성 및 동시에 작동 가능
 
+-이제 server.listen(3000, handleListen);이 가능해진다.
+
 
 
 
